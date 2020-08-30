@@ -1,0 +1,26 @@
+{
+  "name": "nodejsExpressJSON",
+  "version": "1.0.0",
+  "description": "- Practical example of Nodejs and Express in which we will learn to save   the data of our application in a JSON file.   The web application that we will create will be a kind of CRUD   (Create, read, update, delete) using Nodejs, and other Javascript modules on the server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "fuser -k 3000/tcp & nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anbreaker/nodejsExpressJSON.git"
+  },
+  "keywords": [],
+  "author": "anbreaker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anbreaker/nodejsExpressJSON/issues"
+  },
+  "homepage": "https://github.com/anbreaker/nodejsExpressJSON#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
