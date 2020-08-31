@@ -1,7 +1,10 @@
 const {Router, request} = require('express');
 const router = Router();
+const fs = require('fs');
+const uuid = require('uuid');
 
-const books = [];
+const jsonBooks = fs.readFileSync('src/books.json', 'utf-8');
+let books = JSON.parse(jsonBooks);
 
 router.get('/', (request, response) => {
   response.render('index.ejs', {
@@ -22,6 +25,7 @@ router.post('/new-entry', (request, response) => {
   }
 
   let newBook = {
+    id: uuid.v4(),
     title,
     author,
     image,
@@ -29,8 +33,21 @@ router.post('/new-entry', (request, response) => {
   };
 
   books.push(newBook);
-  response.send('recived');
-  console.log('ver', books);
+
+  saveItem();
+
+  response.redirect('/');
 });
+
+router.get('/delete/:id', (request, response) => {
+  books = books.filter((book) => book.id != request.params.id);
+  saveItem();
+  response.redirect('/');
+});
+
+const saveItem = () => {
+  const jsonBooks = JSON.stringify(books);
+  fs.writeFileSync('src/books.json', jsonBooks, 'utf-8');
+};
 
 module.exports = router;
